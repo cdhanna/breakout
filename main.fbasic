@@ -1,0 +1,172 @@
+
+rWidth as float = 1280
+rHeight as float = 720
+
+playerColor = rgb(131, 143, 115)
+
+set render size rWidth, rHeight
+set background color rgb(37, 44, 60)
+
+sprite reserve sprite id(playerSprite), 0, 0, 0
+color sprite playerSprite, playerColor
+size sprite playerSprite, 80, 20
+position sprite playerSprite, rWidth/2, rHeight - 100
+
+sprite reserve sprite id(ballSprite), 0, 0, 0
+halfBallSize = 10
+ballSize = halfBallSize * 2
+size sprite ballSprite, ballSize, ballSize
+ballPos as vec = {
+  x = 400, y = 400
+}
+ballVel as vec = {
+  x = 2, y = 2
+}
+
+brickSize as vec = {
+  x = 50, y = 20
+}
+brickPadding as vec = {
+  x = 10, y = 30
+}
+brickRows = (rHeight*.4) / (brickSize.y + brickPadding.y)
+brickCols = rWidth / (brickSize.x + brickPadding.x)
+
+
+print brickCols
+print brickRows
+brickLength = brickRows * brickCols
+DIM bricks(brickLength) as brick
+DIM brickColors(8)
+brickColors(0) = rgb(111, 40, 4)
+brickColors(1) = rgb(255, 0, 0)
+brickColors(2) = rgb(155, 118, 18)
+brickColors(3) = rgb(246, 255, 0)
+brickColors(4) = rgb(30, 255, 0)
+brickColors(5) = rgb(0, 166, 255)
+brickColors(6) = rgb(111, 0, 255)
+b = 0
+for x = 0 to brickCols - 1
+  for y = 0 to brickRows - 1
+    brick as brick
+    brick.alive = 1
+    reserve sprite id(brick.spriteId)
+    sprite brick.spriteId, 
+      (x+.5) * (brickSize.x + brickPadding.x) + (brickSize.x*.25),
+      (y+.5) * (brickSize.y + brickPadding.y) + (brickSize.y*.5),
+       0
+    size sprite brick.spriteId, brickSize.x, brickSize.y
+    color sprite brick.spriteId, brickColors(y)
+    snap collider to sprite brick.spriteId, brick.spriteId
+    bricks(b) = brick
+    inc b
+  next
+next
+
+
+`enable debug inspector
+do
+
+  x = mouse x()
+  if x < 0 then x = 0
+  prevX = sprite x(playerSprite)
+  position sprite playerSprite, x, sprite y(playerSprite)
+
+  prevPos = ballPos
+  ballpos.x += ballVel.x
+  ballpos.y += ballVel.y
+
+  if ballPos.y > rHeight + ballSize
+    ballPos = {
+      x = 400, y = 400
+    }
+    ballVel = {
+      x = -2
+      y = 2
+    }
+  endif
+  
+
+  position sprite ballsprite, ballPos.x, ballPos.y
+
+  snap collider to sprite ballsprite, ballsprite
+  snap collider to sprite playersprite, playersprite
+  perform collider checks
+
+  slide = 0
+  if (ballPos.y < halfBallSize)
+    ballVel.y *= -1
+    slide = 1
+  endif
+  if (ballPos.x < halfBallSize OR ballpos.x > rWidth - halfBallSize)
+    balLVel.x *= -1
+    slide = 1
+  endif
+
+  if get collision(ballSprite, playersprite)
+    ballVel.y *= -1
+    ballVel.x += (sprite x(playerSprite) - prevX) * .1
+    slide = 1
+    print "hit!"
+  endif
+  for b = 0 to brickLength - 1
+    if (bricks(b).alive = 0) then skip
+    if get collision(ballSprite, bricks(b).spriteId)
+      print "block hit!"
+      xDiff = sprite x(bricks(b).spriteId) - ballpos.x
+      yDiff = sprite y(bricks(b).spriteId) - ballPos.y
+      xDiff *= xDiff `square for positive numbers
+      yDiff *= yDiff
+
+      if (yDiff > xDiff)
+        `top or bottom hit
+        ballVel.y *= -1
+
+      else 
+        ballVel.x *= -1
+
+      endif
+      bricks(b).alive = 0
+      hide sprite bricks(b).spriteId
+      slide = 1
+      exit
+    endif
+  next
+
+  if (slide)
+    ballPos = prevPos
+    ballPos.y += ballVel.y
+  endif
+
+  sync
+loop
+
+remstart
+  need a player, 
+  need a ball,
+  need bricks,
+
+remend
+
+type vec
+  x as float
+  y as float
+endtype
+
+type brick 
+  spriteId
+  alive
+endtype
+
+remstart NOTES
+  -performance in game is really bad compared to standalone
+  -right clicking on a command show have a help option
+  -ctrl-clicking a command should open help
+  -add abs() and sign()
+  -need reserve collider id commands
+  -type aheads shouldn't appear in rem
+  -type aheads aren't showing all possibel variables
+  -type aheads aren't showing structs (ballPos.x) for the x 
+  -type aheads aren't case sensitive
+  -mouse positions don't show zero when the cursor is out of bounds. 
+remend

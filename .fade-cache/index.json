@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "assetName": "catalog-imports/kenney-pixel-shmup/Ships/ship_0006",
+      "sourcePath": "catalog-imports/kenney-pixel-shmup/Ships/ship_0006.png",
+      "sourceHash": "f3bfd6862e07207946b9fbbfc07da92e1efa89407eac9f211ac56f02553fe286",
+      "format": "auto",
+      "encoderVersion": 33,
+      "width": 32,
+      "height": 32,
+      "blobPath": ".fade-cache/blobs/f3bfd6862e07207946b9fbbfc07da92e1efa89407eac9f211ac56f02553fe286.auto.v33.xnb",
+      "compiledAt": "2026-06-25T21:18:11.503Z"
+    },
+    {
+      "assetName": "catalog-imports/kenney-pixel-shmup/Ships/ship_0007",
+      "sourcePath": "catalog-imports/kenney-pixel-shmup/Ships/ship_0007.png",
+      "sourceHash": "5050e7c2358313dfe21cf4629abf6356742a709fb6fc4a3f5c4ed8ea814dd305",
+      "format": "auto",
+      "encoderVersion": 33,
+      "width": 32,
+      "height": 32,
+      "blobPath": ".fade-cache/blobs/5050e7c2358313dfe21cf4629abf6356742a709fb6fc4a3f5c4ed8ea814dd305.auto.v33.xnb",
+      "compiledAt": "2026-06-25T21:18:11.518Z"
+    },
+    {
+      "assetName": "catalog-imports/kenney-pixel-shmup/Ships/ship_0008",
+      "sourcePath": "catalog-imports/kenney-pixel-shmup/Ships/ship_0008.png",
+      "sourceHash": "4b398acb868d1f07bcb0faec14fe75cb065a64a2e38cfe0eb3d9ee972f8f3457",
+      "format": "auto",
+      "encoderVersion": 33,
+      "width": 32,
+      "height": 32,
+      "blobPath": ".fade-cache/blobs/4b398acb868d1f07bcb0faec14fe75cb065a64a2e38cfe0eb3d9ee972f8f3457.auto.v33.xnb",
+      "compiledAt": "2026-06-25T21:18:11.528Z"
+    },
+    {
+      "assetName": "catalog-imports/kenney-pixel-shmup/Ships/ship_0009",
+      "sourcePath": "catalog-imports/kenney-pixel-shmup/Ships/ship_0009.png",
+      "sourceHash": "bf989b6560ca5823997ff835ea77a60901d2718f4750e9f62de5df9a44446385",
+      "format": "auto",
+      "encoderVersion": 33,
+      "width": 32,
+      "height": 32,
+      "blobPath": ".fade-cache/blobs/bf989b6560ca5823997ff835ea77a60901d2718f4750e9f62de5df9a44446385.auto.v33.xnb",
+      "compiledAt": "2026-06-25T21:18:11.539Z"
+    }
+  ]
+}

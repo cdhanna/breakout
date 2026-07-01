@@ -1,2 +1,0 @@
-# breakout
-Fade playground project
