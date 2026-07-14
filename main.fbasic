@@ -23,6 +23,9 @@ ballVel as vec = {
   x = 2, y = 2
 }
 
+
+` changes!
+
 brickSize as vec = {
   x = 50, y = 20
 }
@@ -63,8 +66,10 @@ for x = 0 to brickCols - 1
   next
 next
 
+` I added this comment
+`hello there 
 
-`enable debug inspector
+`enable debug inspectOhor
 do
 
   x = mouse x()
